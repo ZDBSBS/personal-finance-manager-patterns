@@ -23,7 +23,8 @@ class Transaction:
         if category is None and transaction_type is not None:
             category = self._category_from_type(transaction_type)
         if category is None:
-            raise ValueError("A transaction category or transaction_type is required")
+            raise ValueError(
+                "A transaction category or transaction_type is required")
         self.amount = amount
         self.category = category
         self.description = description
@@ -37,7 +38,8 @@ class Transaction:
         try:
             return categories[transaction_type.lower()]
         except (AttributeError, KeyError):
-            raise ValueError("transaction_type must be 'income' or 'expense'") from None
+            raise ValueError(
+                "transaction_type must be 'income' or 'expense'") from None
 
     @property
     def transaction_type(self) -> str:

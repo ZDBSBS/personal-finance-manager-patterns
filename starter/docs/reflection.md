@@ -24,6 +24,8 @@ The Command pattern was selected to represent financial operations as independen
 
 The primary benefit is support for reversible operations while maintaining a clear and extensible design. The trade-off is the introduction of additional classes and the requirement that each command defines both execution and reversal logic.
 
+Together, the Singleton, Adapter, Observer, and Command patterns address different architectural concerns while maintaining clear separation of responsibilities, flexibility, and maintainability.
+
 ## Challenges and Trade-offs
 
 One of the primary design goals was achieving modularity while maintaining simplicity. Dependency injection was used to reduce coupling between components and improve testability. Dependencies such as observers and commands are supplied externally rather than being created internally, making components easier to replace, extend, and test in isolation.

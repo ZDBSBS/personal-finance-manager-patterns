@@ -15,7 +15,8 @@ class ExternalFreelanceIncome:
         payment_amount: Optional[float] = None,
     ) -> None:
         if amount is not None and payment_amount is not None:
-            raise ValueError("Specify either amount or payment_amount, not both")
+            raise ValueError(
+                "Specify either amount or payment_amount, not both")
         self.amount = payment_amount if payment_amount is not None else amount
         if self.amount is None:
             raise ValueError("An amount or payment_amount is required")

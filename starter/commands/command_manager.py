@@ -28,7 +28,11 @@ class CommandManager:
         return True
 
     def redo(self) -> bool:
-        """Redo the latest undone command; return False when none is available."""
+        """
+        Redo the latest undone command.
+
+        Return False when no command is available.
+        """
         if not self._redo_history:
             return False
         command = self._redo_history[-1]

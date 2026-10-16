@@ -1,6 +1,7 @@
 """Balance observers for printing updates and warning about low funds."""
 from transaction.transaction import Transaction
 
+
 class IBalanceObserver:
     """Interface implemented by balance observers."""
 

@@ -48,7 +48,10 @@ class Balance:
         self.withdraw(amount)
 
     def _change_balance(
-        self, amount: float, category: TransactionCategory, description: str = ""
+        self,
+        amount: float,
+        category: TransactionCategory,
+        description: str = "",
     ) -> None:
         if isinstance(amount, bool) or not isinstance(amount, (int, float)):
             raise TypeError("amount must be a number")

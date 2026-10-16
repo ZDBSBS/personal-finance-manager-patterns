@@ -1,6 +1,9 @@
 """This module serves as the entry point for the program."""
 from balance.balance import Balance
-from balance.balance_observer import LowBalanceAlertObserver, PrintBalanceObserver
+from balance.balance_observer import (
+    LowBalanceAlertObserver,
+    PrintBalanceObserver,
+)
 from commands.command_manager import CommandManager
 from commands.deposit_command import DepositCommand
 from commands.withdraw_command import WithdrawCommand
@@ -50,6 +53,7 @@ def main() -> None:
     print("Redoing last transaction...")
     manager.redo()
     print(balance.summary())
+
 
 if __name__ == "__main__":
     main()
