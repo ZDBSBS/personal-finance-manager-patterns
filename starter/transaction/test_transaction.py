@@ -9,6 +9,13 @@ class TestTransaction(unittest.TestCase):
         self.assertEqual(t.amount, 100)
         self.assertEqual(t.category, TransactionCategory.EXPENSE)
 
+    def test_transaction_type_and_description(self):
+        transaction = Transaction(
+            150, transaction_type="income", description="Client project"
+        )
+        self.assertEqual(transaction.transaction_type, "income")
+        self.assertEqual(transaction.description, "Client project")
+
     def test_transaction_str(self):
         t = Transaction(50, TransactionCategory.INCOME)
         self.assertEqual(str(t), "Transaction($50, category='TransactionCategory.INCOME')")

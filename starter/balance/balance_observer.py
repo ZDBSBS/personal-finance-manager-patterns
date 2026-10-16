@@ -1,21 +1,35 @@
-# balance_observer.py
+"""Balance observers for printing updates and warning about low funds."""
+from transaction.transaction import Transaction
 
 class IBalanceObserver:
-    def update(self, balance, transaction):
+    """Interface implemented by balance observers."""
+
+    def update(self, balance: float, transaction: Transaction) -> None:
         """Handle balance updates."""
         raise NotImplementedError("Subclasses must implement update method.")
 
 
 class PrintObserver(IBalanceObserver):
-    def update(self, balance, transaction):
+    """Print the balance after each transaction."""
+
+    def update(self, balance: float, transaction: Transaction) -> None:
         """Print balance update message."""
-        pass
+        print(f"Current Balance: {balance:g} €")
+
+
+class PrintBalanceObserver(PrintObserver):
+    """Explicitly named print observer."""
 
 
 class LowBalanceAlertObserver(IBalanceObserver):
-    def __init__(self, threshold):
-        self.threshold = threshold
+    """Track whether the balance is below a configured threshold."""
 
-    def update(self, balance, transaction):
+    def __init__(self, threshold: float) -> None:
+        self.threshold = threshold
+        self.alert_triggered = False
+
+    def update(self, balance: float, transaction: Transaction) -> None:
         """Alert if balance drops below threshold."""
-        pass
+        self.alert_triggered = balance < self.threshold
+        if self.alert_triggered:
+            print(f"WARNING: Balance below {self.threshold:g} €")

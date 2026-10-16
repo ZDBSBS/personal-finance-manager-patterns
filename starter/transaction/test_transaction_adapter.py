@@ -11,6 +11,19 @@ class TestTransactionAdapter(unittest.TestCase):
         adapter = TransactionAdapter(ext_txn)
         txn = adapter.to_transaction()
         self.assertEqual(txn, Transaction(500, TransactionCategory.INCOME))
+        self.assertEqual(txn.description, "Website development")
+
+    def test_adapter_accepts_external_payment_amount_format(self):
+        external_income = ExternalFreelanceIncome(
+            income_source="Upwork", payment_amount=500
+        )
+        transaction = TransactionAdapter(external_income).to_transaction()
+
+        self.assertEqual(external_income.payment_amount, 500)
+        self.assertEqual(external_income.transaction_type, "income")
+        self.assertEqual(transaction.amount, 500)
+        self.assertEqual(transaction.transaction_type, "income")
+        self.assertEqual(transaction.description, "")
 
 if __name__ == "__main__":
     unittest.main()
